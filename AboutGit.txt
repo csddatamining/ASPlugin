@@ -13,8 +13,8 @@ Git迅速成为最流行的分布式版本控制系统，尤其是2008年，GitH
 
 安装Git
 	Linux：通过sudo apt-get install git
-	Mac OSX:AppStore上安装Xcode，运行Xcode,->Preference
-			->弹窗中找到Downloades，选择Command Line Tools
+	Mac OSX:AppStore上安装Xcode，
+	运行Xcode->Preference->弹窗中找到Downloades，选择Command Line Tools
 	Windows：通过https://git-for-windows.github.io/下载
 	
 创建版本库
@@ -30,7 +30,7 @@ Git迅速成为最流行的分布式版本控制系统，尤其是2008年，GitH
 	若没有看到该目录，是因为该目录是隐藏的
 	可以使用ls -ah命令查看
 	
-	把文件添加到版本库
+	3.把文件添加到版本库
 	所有的版本控制系统，只能跟踪文本文件的改动，如txt网页等
 	图片、视频等这些二进制文件，也能由版本控制系统管理，但无法跟踪文件的变化。
 	只能把二进制文件每次改动串联起来，也就是只知道图片由100kb改成了120kb
@@ -38,5 +38,44 @@ Git迅速成为最流行的分布式版本控制系统，尤其是2008年，GitH
 	要真正使用版本控制系统，就要以纯文本的方式编写文件
 	因为文本是有编码的，如中文常用的GBK，日文的Shift_JIS。
 	强烈建议使用标准的UTF-8编码，所有语言使用同一种编码，无冲突，又被所有平台支持。
+		现在编写一个README.txt文件
+		1.使用命令将文件添加到仓库：
+		$ git add README.txt
+		执行命令，若没有任何显示，就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功
+		
+		2.用命令git commit将文件提交到仓库：
+		$ git commit -m "wrote a readme file"
+		简单解释下 -m 后面输入的是本次提交的说明
+		命令执行成功后会提示你，一个文件被改动（新增的README.txt文件）,插入了两行内容
+		为什么Git添加文件需要add，commit两步呢，因为commit可以一次提交很多文件
+		
+时光机穿梭
+		添加readme文件后，修改该文件
+		使用git status命令可以让我们时刻掌握仓库当前的状态，
+		上面的命令告诉我们readme.txt被修改了，
+		如果我们想看怎么修改的
+		可以使用git diff命令
+	版本回退
+		先使用git log查看各种版本的历史记录
+		git log 命令显示从最近到最远的提交日志
+		如果嫌输出信息太多，可以加上--pretty=oneline参数
+		$ git log --pretty=oneline
+		可以看到一大串类似abe23dbf..的是commit id（版本号）
+		和SVN不一样，Git的commit id 不是1,2,3的递增的数字，而是一个SHA1计算出来的非常大的数字，用16进制表示
+		为啥要用这么一大串呢，因为Git是分布式的版本控制系统
+		每提交一个新版本，实际上Git就会把它们自动串成一条时间线
+		如何回退呢，
+		在Git中，HEAD表示当前版本，上一个版本就是HEAD^，上上个就是HEAD^^
+		再往上100个版本可以用HEAD~100
+		现在回退到上个版本：
+		$ git reset --hard HEAD^
+		或者使用（后面跟上commit id前几位就行）
+		$ git reset --hard 3628123
+		Git的版本速度非常快，因为Git的内部有个指向当前版本的HEAD指针，
+		当你回退时，只是把HEAD指向了你所指向的版本
+		Git提供了一种命令git reflog用来记录你每一次命令
 	
-	
+	工作区和暂存区
+		
+		
+		
