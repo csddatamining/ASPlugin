@@ -2,7 +2,7 @@
 
 ## 作者
 
-姓名：陈帅多
+姓名：Sam Chen
 
 邮箱:[csddatamining@163.com](mailto: csddatamining@163.com)
 
