@@ -17,7 +17,7 @@ Git迅速成为最流行的分布式版本控制系统，尤其是2008年，GitH
 	运行Xcode->Preference->弹窗中找到Downloades，选择Command Line Tools
 	Windows：通过https://git-for-windows.github.io/下载
 	安装完成后，配置作者及email：
-	$ git config --global user.name "chenshuaiduo"
+	$ git config --global user.name "ShadowCdu"
 	$ git config --global user.email "emial@example.com"
 	
 创建版本库

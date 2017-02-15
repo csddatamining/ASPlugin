@@ -2,9 +2,9 @@
 
 ## 作者
 
-姓名：Sam Chen
+姓名：ShadowCdu
 
-邮箱:[csddatamining@163.com](mailto: csddatamining@163.com)
+邮箱: [csddatamining@163.com](mailto: csddatamining@163.com)
 
 
 ## 插件说明
