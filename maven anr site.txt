@@ -1,0 +1,4 @@
+http://maven-nar.github.io/
+http://java.freehep.org/freehep-nar-plugin/intro.html
+https://my.oschina.net/4my1986/blog/201100
+http://spring.io/guides/gs/maven-android/
