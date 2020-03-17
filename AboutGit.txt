@@ -16,6 +16,9 @@ Git迅速成为最流行的分布式版本控制系统，尤其是2008年，GitH
 	Mac OSX:AppStore上安装Xcode，
 	运行Xcode->Preference->弹窗中找到Downloades，选择Command Line Tools
 	Windows：通过https://git-for-windows.github.io/下载
+	安装完成后，配置作者及email：
+	$ git config --global user.name "ShadowCdu"
+	$ git config --global user.email "emial@example.com"
 	
 创建版本库
 	1.创建一个空目录：
@@ -85,6 +88,60 @@ Git迅速成为最流行的分布式版本控制系统，尤其是2008年，GitH
 			把文件往Git版本库里添加的时候，分两步执行：
 			第一步是git add将文件添加进去，实际就是把文件修改添加到暂存区
 			第二步是git commit提交修改，实际就是把暂存区的所有内容提交到当前分支
+<<<<<<< HEAD
 			
 		
 		
+=======
+		管理修改
+			使用cat **.txt,进行修改文件
+			每次修改如果不使用git add，将不会添加到git commit中
+		撤销修改
+			$ git checkout -- readme.txt
+			使用cat查看内容
+			git checkout -- file命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令
+			如果已经add到暂存区了，但没有提交，可使用命令：
+			$ git reset HEAD file
+			可以把暂存区的修改撤销掉(unstage),重新放回工作区
+			git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。
+			场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
+			场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
+			场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
+		删除文件
+			一般使用rm命令即可删除文件
+			也可使用$ git rm test.txt删除
+			删错了可以使用$ git checkout -- test.txt进行恢复
+	远程仓库
+			搭建一台运行Git的服务器，可以使用GitHub网站，该网站提供Git仓库托管服务，只要注册一个账号，即可免费获得Git远程仓库
+			第一步：创建SSH Key,在用户主目录下，看有无.ssh目录，若有，再看看目录下有无id_rsa和id_rsa.pub两个文件，若有，可直接跳到下一步
+			若无，打开Shell（Git Bash）,创建SSH Key:
+			$ ssh-keygen -t rsa -C "***@**.com"
+			把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可
+			如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，
+			这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。
+			第二步：登陆GitHub，打开"Account settings"，"SSH Keys"页面：
+			点击"Add SSH Key"，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容
+			为什么GitHub需要SSH Key呢？
+			因为GitHub需要识别出你推送的提交确实是你推送的，而不是别人冒充的，而Git支持SSH协议，所以，GitHub只要知道了你的公钥，就可以确认只有你自己才能推送
+			当然，GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。
+			在GitHub上免费托管的Git仓库，任何人都可以看到喔（但只有你自己才能改）。所以，不要把敏感信息放进去
+			如果你不想让别人看到Git库，有两个办法，一个是交点保护费，让GitHub把公开的仓库变成私有的，这样别人就看不见了（不可读更不可写）。
+			另一个办法是自己动手，搭一个Git服务器，因为是你自己的Git服务器，所以别人也是看不见的。
+		添加远程库
+			首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：
+			在Repository name填入ASPlugin，其他默认设置，点击Create repository按钮，即成功创建了Git仓库
+			现在GitHub上的仓库还是空的，我们可以把一个已有的本地仓库与之关联再把本地仓库的内功推动到GitHub仓库：
+			在本地的仓库下运行命令：
+			$ git remote add origin git@github.com:csddatamining
+			然后把本地库的所有内容推送到远程库上：
+			$ git push -u origin master
+			把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。
+			由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，
+			还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+			推送成功后，可以立刻在GitHub页面中看到远程库的内容已经和本地一模一样
+			
+			
+			
+			
+			
+>>>>>>> c0d893451e552a7c783f17c33aebfb8b79fc26b8
